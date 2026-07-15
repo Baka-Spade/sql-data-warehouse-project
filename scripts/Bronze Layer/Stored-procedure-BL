@@ -1,0 +1,142 @@
+/*
+==============================================================================
+Project      : BakaDBW Data Warehouse
+Layer        : Bronze
+Object       : Bronze.SP_bronze_load
+Object Type  : Stored Procedure
+
+This Script is a Stored Procedure 
+
+Source Systems
+--------------
+• CRM
+• ERP
+
+Output
+------
+• Truncates all Bronze staging tables.
+• Loads the latest CRM and ERP data.
+• Displays execution progress and completion messages.
+
+Execution
+---------
+EXEC Bronze.SP_bronze_load;
+*/
+
+CREATE OR ALTER PROCEDURE Bronze.SP_bronze_load AS 
+SET NOCOUNT ON;
+DECLARE @start_time DATETIME , @end_time DATETIME
+
+BEGIN
+	BEGIN TRY
+	SET @start_time = GETDATE()
+	PRINT('-------------------------------------')
+	PRINT('Loading Bronze Layer........')
+	PRINT('-------------------------------------')
+
+		/*========================================
+					 CRM SOURCE
+		========================================*/
+	PRINT('Loading from CRM Source.............')
+		------------------------------------------
+		-- Bronze.crm_cust_info
+		
+		TRUNCATE TABLE Bronze.crm_cust_info;
+		BULK INSERT Bronze.crm_cust_info
+		FROM 'C:\sqlbackups\source_crm\cust_info.csv'
+		WITH 
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+
+		------------------------------------------
+		-- Bronze.crm_prd_info
+
+		TRUNCATE TABLE Bronze.crm_prd_info;
+		BULK INSERT Bronze.crm_prd_info
+		FROM 'C:\sqlbackups\source_crm\prd_info.csv'
+		WITH 
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+	
+		------------------------------------------
+		-- Bronze.crm_sales_details
+
+		TRUNCATE TABLE Bronze.crm_sales_details;
+		BULK INSERT Bronze.crm_sales_details
+		FROM 'C:\sqlbackups\source_crm\sales_details.csv'
+		WITH 
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+
+		------------------------------------------
+
+	PRINT('SUCCESS')
+	PRINT('-------------------------------------')
+		/*========================================
+					 ERP SOURCE
+		========================================*/
+	PRINT('Loading from ERP Source.............')
+		------------------------------------------
+		-- Bronze.erp_CUST_AZ12
+
+		TRUNCATE TABLE Bronze.erp_CUST_AZ12;
+		BULK INSERT Bronze.erp_CUST_AZ12
+		FROM 'C:\sqlbackups\source_erp\CUST_AZ12.csv'
+		WITH
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+
+		------------------------------------------
+		-- Bronze.erp_LOC_A101
+
+		TRUNCATE TABLE Bronze.erp_LOC_A101;
+		BULK INSERT Bronze.erp_LOC_A101
+		FROM 'C:\sqlbackups\source_erp\LOC_A101.csv'
+		WITH 
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+
+		------------------------------------------
+		-- Bronze.erp_PX_CAT_G1V2
+
+		TRUNCATE TABLE Bronze.erp_PX_CAT_G1V2;
+		BULK INSERT Bronze.erp_PX_CAT_G1V2
+		FROM 'C:\sqlbackups\source_erp\PX_CAT_G1V2.csv'
+		WITH 
+		(
+			FIRSTROW = 2,
+			FIELDTERMINATOR = ',',
+			TABLOCK
+		);
+			SET @end_time = GETDATE()
+	PRINT('SUCCESS')
+
+	PRINT('-------------------------------------')
+	PRINT ('Bronze Layer Successfully Loaded')
+	PRINT('Time Taken ' + CAST(DATEDIFF(Second , @start_time , @end_time) AS NVARCHAR) + ' seconds')
+	PRINT('-------------------------------------')
+	END TRY
+
+	BEGIN CATCH
+		PRINT('----------------------------------------------')
+		PRINT('AN ERROR OCCURED WHILE LOADING BRONZE LAYER')
+		PRINT('ERROR' + CAST(ERROR_NUMBER() + ERROR_LINE() + ERROR_MESSAGE() AS NVARCHAR))
+		PRINT('----------------------------------------------')
+	END CATCH
+------------------------------------------
+END
