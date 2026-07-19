@@ -39,13 +39,13 @@ SQL-Data-Warehouse
 │
 ├── scripts/
 │   ├── Bronze/
-│   │   ├── bronze_ddl.sql
-│   │   └── bronze_etl.sql
+│   │   ├── DDL,ETL.sql
+│   │   └── Stored-Procedure-BL.sql
 │   ├── Silver/
-│   │   ├── silver_ddl.sql
-│   │   └── silver_etl.sql
+│   │   ├── Silver-DDL.sql
+│   │   └── Silver-SP_ETL.sql
 │   └── Gold/
-│       └── gold_views.sql
+│       └── Gold_Views.sql
 │
 ├── docs/
 │   ├── Gold_Data_Catalog.md
