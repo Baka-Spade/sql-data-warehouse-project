@@ -38,13 +38,13 @@ SQL-Data-Warehouse
 ├── datasets/
 │
 ├── scripts/
-│   ├── Bronze/
+│   ├── Bronze Layer/
 │   │   ├── DDL,ETL.sql
 │   │   └── Stored-Procedure-BL.sql
-│   ├── Silver/
+│   ├── Silver Layer/
 │   │   ├── Silver-DDL.sql
 │   │   └── Silver-SP_ETL.sql
-│   └── Gold/
+│   └── Gold Layer/
 │       └── Gold_Views.sql
 │
 ├── docs/
