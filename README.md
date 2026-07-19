@@ -63,7 +63,7 @@ SQL-Data-Warehouse
 ## Architecture
 
 <p align="center">
-<img src="Documents/images/Data_Architecture.drawio.png" width="900">
+<img src="Documents/images/Data_Architeccture.drawio.png" width="900">
 </p>
 
 
@@ -79,7 +79,7 @@ SQL-Data-Warehouse
 ## Data Flow
 
 <p align="center">
-<img src="Documents/images/DataFlow.drawio.png" width="900">
+<img src="Documents/images/Dataflow.drawio.png" width="900">
 </p>
 
 ---
