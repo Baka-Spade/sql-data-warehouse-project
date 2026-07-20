@@ -49,9 +49,6 @@ SQL-Data-Warehouse
 │
 ├── docs/
 │   ├── Gold_Data_Catalog.md
-│   ├── Business_Rules.md
-│   ├── Data_Quality.md
-│   ├── Naming_Standards.md
 │   └── images/
 │
 ├── README.md
