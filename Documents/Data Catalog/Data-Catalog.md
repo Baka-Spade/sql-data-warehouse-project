@@ -52,7 +52,7 @@ The Gold layer follows these principles:
 
 ```html
 <p align="center">
-<img src="images/Gold_Diagram.png" width="900">
+<img src="Documents/images/Gold_Diagram.drawio.png" width="900">
 </p>
 ```
 
