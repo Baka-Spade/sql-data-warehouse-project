@@ -48,13 +48,9 @@ The Gold layer follows these principles:
 
 # Star Schema
 
-*(Insert Gold_Diagram.png here)*
 
-```html
-<p align="center">
-<img src="Documents/images/Gold_Diagram.drawio.png" width="900">
-</p>
-```
+<img width="701" height="941" alt="Gold_Diagram drawio" src="https://github.com/user-attachments/assets/17b79c52-4160-466c-8737-c9c17355b32c" />
+
 
 ---
 
